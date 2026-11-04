@@ -193,3 +193,25 @@ To deploy these configurations in a fresh lab environment:
    chmod +x scripts/test-payloads.sh
    ./scripts/test-payloads.sh
    ```
+
+<!-- SANITIZER_SECURITY_NOTE -->
+## Security and deployment notes
+
+- The repository does not provide a working IPsec pre-shared key. Both FortiGate
+  reference configurations use `REPLACE_WITH_YOUR_OWN_PSK`. Supply your own unique secret
+  locally on both VPN endpoints; never commit it.
+- Do not commit passwords, tokens, private keys, license files, or device-specific
+  credentials. Use placeholders in examples.
+- DVWA is intentionally vulnerable and must only be used in an isolated,
+  authorized lab environment. Do not expose it to the public internet.
+- The direct-to-backend path on port 10445 is an intentionally uninspected,
+  lab-only control path. Do not deploy or expose it outside the isolated lab.
+- These files are educational lab reference material, not production-ready
+  templates. Validate syntax and behavior against the exact vendor versions before
+  any redeployment.
+- The original EVE-NG lab has been decommissioned. The configurations and test
+  procedures were not revalidated on live appliances after decommissioning.
+- The original IPsec proposals include legacy cryptographic algorithms. Do not
+  reuse them in production; select mutually supported modern algorithms and
+  validate compatibility before deployment.
+
